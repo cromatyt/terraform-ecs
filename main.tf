@@ -1,4 +1,5 @@
 provider "aws" {
-  alias = "main"
-  #region = var.AWS_REGION
+  #alias = "main"
+  #shared_credentials_files = [ "~/.aws/credentials" ]
+  region = "eu-west-1"
 }
