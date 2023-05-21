@@ -8,4 +8,11 @@ terraform {
       version = ">= 4.0, <5.0"
     }
   }
+
+  backend "s3" {
+    bucket = "tfstate-actions"
+    key = "github-actions/tfstate"
+    #region = region_name
+
+    encrypt = true
 }
