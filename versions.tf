@@ -15,4 +15,5 @@ terraform {
     #region = region_name
 
     encrypt = true
+  }
 }
