@@ -12,7 +12,7 @@ terraform {
   backend "s3" {
     bucket = "tfstate-actions"
     key = "github-actions/tfstate"
-    #region = region_name
+    region = "eu-west-1"
 
     encrypt = true
   }
