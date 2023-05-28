@@ -22,5 +22,5 @@
 resource "aws_key_pair" "ssh_key" {
   key_name   = "ssh_key"
   #public_key = file("~/.ssh/id_ed25519.pub")
-  public_key = var.AWS_SSH_KEY
+  public_key = var.ec2_ssh_key
 }
