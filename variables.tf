@@ -13,7 +13,8 @@ variable "key_name" {
 }
 
 variable "AWS_SSH_KEY" {
-  type = string  
+  type = string
+  sensitive = true
 }
 
 variable "ec2_instance_type" {
