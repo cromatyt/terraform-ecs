@@ -12,7 +12,7 @@ variable "key_name" {
   default = "test1_key"
 }
 
-variable "AWS_SSH_KEY" {
+variable "ec2_ssh_key" {
   type = string
   sensitive = true
 }
