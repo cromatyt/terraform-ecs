@@ -4,7 +4,7 @@
 
 variable "ami" {
   type = string
-  default = "ami-017d70213b2dbe508" #redhat 9 eu-west-1
+  default = "ami-04b82270e2c61ea45" #redhat 9 eu-west-1
 }
 
 variable "key_name" {
