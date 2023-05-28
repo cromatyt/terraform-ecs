@@ -4,7 +4,7 @@
 
 variable "ami" {
   type = string
-  default = "ami-04b82270e2c61ea45" #redhat 9 eu-west-1
+  default = "ami-04f7efe62f419d9f5" # AWS Linux 2023
 }
 
 variable "key_name" {
