@@ -44,11 +44,11 @@ resource "aws_ecs_service" "ecs_service" {
   desired_count   = 2
   #launch_type     = "EC2"
 
-  alarms {
-    enable   = true
-    rollback = true
-    alarm_names = [
-      aws_cloudwatch_metric_alarm.example.alarm_name
-    ]
-  }
+  #alarms {
+  #  enable   = true
+  #  rollback = true
+  #  alarm_names = [
+  #    aws_cloudwatch_metric_alarm.example.alarm_name
+  #  ]
+  #}
 }
