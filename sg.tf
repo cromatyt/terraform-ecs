@@ -1,3 +1,7 @@
+##################
+# Security group #
+##################
+
 resource "aws_security_group" "test1_sg" {
   name        = "allow_for_test1"
   description = "Allow SSH/HTTP/HTTPS inbound traffic"

@@ -1,3 +1,7 @@
+###############
+# Route table #
+###############
+
 resource "aws_route_table" "test1_route" {
   vpc_id = aws_vpc.test1_vpc.id
 
@@ -13,6 +17,6 @@ resource "aws_route_table" "test1_route" {
 
 resource "aws_route_table_association" "test1_route_asso_pub" {
   count           = length(var.public_subnet_cidrs)
-  subnet_id       = element(aws_subnet.public_subnets[*].id, count.index)
+  subnet_id       = aws_subnet.public_subnets[*].id[count.index]
   route_table_id  = aws_route_table.test1_route.id
 }

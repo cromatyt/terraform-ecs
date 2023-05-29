@@ -1,3 +1,7 @@
+########
+# Ec2 #
+#######
+
 resource "aws_instance" "test1" {
   ami                         = var.ami
   count                       = length(var.private_subnet_cidrs)
@@ -5,7 +9,7 @@ resource "aws_instance" "test1" {
   key_name                    = var.key_name # for ssh key config
   vpc_security_group_ids      = [aws_security_group.test1_sg.id]
   depends_on                  = [aws_internet_gateway.test1_ig]
-  subnet_id                   = element(aws_subnet.public_subnets[*].id, count.index)
+  subnet_id                   = aws_subnet.public_subnets[*].id[count.index]
   associate_public_ip_address = true
 
   tags = {

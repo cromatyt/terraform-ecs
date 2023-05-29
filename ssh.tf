@@ -1,3 +1,7 @@
+############
+# Key pair #
+############
+
 #resource "tls_private_key" "ed25519-test1" {
 # algorithm = "ED25519"
 #}
