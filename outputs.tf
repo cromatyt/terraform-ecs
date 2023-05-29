@@ -9,3 +9,8 @@ output "instance_public_ip" {
   value       = aws_instance.test1.public_ip
   sensitive = false
 }
+
+output "security_group_test1_sg" {
+  value = aws_security_group.test1_sg.id
+}
+ 

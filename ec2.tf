@@ -1,8 +1,12 @@
 resource "aws_instance" "test1" {
-  ami = var.ami
+  ami                         = var.ami
   #count = var.ec2_instance_number
-  instance_type = var.ec2_instance_type
-  key_name = var.key_name
+  instance_type               = var.ec2_instance_type
+  key_name                    = var.key_name # for ssh config
+  vpc_security_group_ids      = [aws_security_group.test1-sg]
+  depends_on                  = [aws_internet_gateway.test1_ig]
+  subnet_id                   = aws_subnet.public_subnets.id
+  associate_public_ip_address = true
 
   tags = {
     Name = var.ec2_instance_name
