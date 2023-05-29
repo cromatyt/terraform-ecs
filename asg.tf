@@ -60,7 +60,7 @@ resource "aws_launch_template" "ecs_launch_config" {
 
 resource "aws_autoscaling_group" "failure_analysis_ecs_asg" {
   name_prefix               = "myasg-"
-  vpc_zone_identifier       = [aws_subnet.public_subnets[count.index].id]
+  vpc_zone_identifier       = aws_subnet.public_subnets[count.index].id
   launch_configuration      = {
     id      = aws_launch_template.ecs_launch_config.id
     version = aws_launch_template.ecs_launch_config.latest_version
