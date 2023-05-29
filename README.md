@@ -1,5 +1,10 @@
 # Terraform aws
 
+## Description
+
+This project will deploy an ec2 environment on AWS.
+Currently, it deploys an ec2 instance on each subnet of your AWS region.
+
 ## Required
 
 1. Configure SSH
