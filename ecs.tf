@@ -14,7 +14,7 @@ resource "aws_ecs_cluster" "ecs_cluster_test1" {
 resource "aws_ecs_task_definition" "task_definition_test1" {
   family                    = "td_test1"
   requires_compatibilities  = ["EC2"]
-  network_mode              = "awsvpc"
+  #network_mode              = "awsvpc"
 
   container_definitions = jsonencode([
     {
