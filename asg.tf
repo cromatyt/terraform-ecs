@@ -65,7 +65,7 @@ resource "aws_autoscaling_group" "failure_analysis_ecs_asg" {
 
   launch_template {
     id      = aws_launch_template.ecs_launch_config.id
-    version = aws_launch_template.execs_launch_configample.latest_version
+    version = aws_launch_template.ecs_launch_config.latest_version
   }
 
   desired_capacity          = 3
