@@ -1,7 +1,7 @@
 resource "aws_security_group" "test1_sg" {
   name        = "allow_for_test1"
   description = "Allow SSH/HTTP/HTTPS inbound traffic"
-  vpc_id      = aws_vpc.main.id
+  vpc_id      = aws_vpc.test1_vpc.id
 
   tags = {
     Name = "allow_basic_test1"
