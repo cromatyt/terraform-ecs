@@ -43,7 +43,7 @@ variable "ec2_instance_name" {
 
 variable "ecs_cluster_name" {
   type = string
-  defaudefault = "ECStest1"  
+  default = "ECStest1"  
 }
 
 variable "az" {
