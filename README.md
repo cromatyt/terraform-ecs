@@ -4,6 +4,7 @@
 
 This project will deploy an ec2 environment on AWS.
 Currently, it deploys an ec2 instance on each subnet of your AWS region.
+Target => deploy ecs cluster on ec2 instances
 
 ## Required
 
