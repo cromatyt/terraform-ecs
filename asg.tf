@@ -62,10 +62,6 @@ resource "aws_autoscaling_group" "failure_analysis_ecs_asg" {
   count                     = length(var.public_subnet_cidrs)
   name_prefix               = "myasg-"
   vpc_zone_identifier       = [aws_subnet.public_subnets[count.index].id]
-  launch_configuration      = {
-    id      = aws_launch_template.ecs_launch_config.id
-    version = aws_launch_template.ecs_launch_config.latest_version
-  }
 
   desired_capacity          = 3
   min_size                  = 3
