@@ -51,7 +51,7 @@
 #}
 
 resource "aws_launch_template" "ecs_launch_config" {
-  Name                    = "my-launch-template"
+  name                    = "my-launch-template"
   image_id                = var.ami
   vpc_security_group_ids  = [aws_security_group.test1_sg.id]
   user_data               = "#!/bin/bash\necho ECS_CLUSTER=my-cluster >> /etc/ecs/ecs.config"
