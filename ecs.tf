@@ -43,4 +43,12 @@ resource "aws_ecs_service" "ecs_service" {
   task_definition = aws_ecs_task_definition.task_definition_test1.arn
   desired_count   = 2
   #launch_type     = "EC2"
+
+  alarms {
+    enable   = true
+    rollback = true
+    alarm_names = [
+      aws_cloudwatch_metric_alarm.example.alarm_name
+    ]
+  }
 }
