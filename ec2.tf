@@ -1,6 +1,6 @@
 resource "aws_instance" "test1" {
   ami                         = var.ami
-  #count = var.ec2_instance_number
+  count                       = length(var.private_subnet_cidrs)
   instance_type               = var.ec2_instance_type
   key_name                    = var.key_name # for ssh key config
   vpc_security_group_ids      = [aws_security_group.test1_sg.id]
