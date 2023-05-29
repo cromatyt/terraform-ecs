@@ -22,7 +22,7 @@ resource "aws_iam_role_policy_attachment" "ecs_iam_policy" {
   policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
 }
 
-#resource "aws_iam_instance_profile" "ecs_iam_agent" {
-#  name = "ecs_iam_agent"
-#  role = aws_iam_role.ecs_iam_role.name
-#}
+resource "aws_iam_instance_profile" "ecs_iam_agent" {
+  name = "ecs_iam_agent"
+  role = aws_iam_role.ecs_iam_role.name
+}
