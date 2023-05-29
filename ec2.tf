@@ -9,7 +9,7 @@ resource "aws_instance" "test1" {
   associate_public_ip_address = true
 
   tags = {
-    Name = var.ec2_instance_name
+    Name = "${var.ec2_instance_name}-${count.index}"
   }
 
   credit_specification {
