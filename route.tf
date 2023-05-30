@@ -11,7 +11,7 @@ resource "aws_route_table" "test1_route" {
   }
 
    tags = {
-    Name        = "route-${var.project_name}-${var.env}}"
+    Name        = "route-${var.project_name}-${var.environment}}"
     Environment = var.environment
  }
 }
