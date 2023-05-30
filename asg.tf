@@ -8,7 +8,6 @@ locals {
 
 resource "aws_launch_template" "ecs_launch_config" {
   name                    = "my-launch-template"
-  count                   = length(var.public_subnet_cidrs)
   image_id                = var.ami
   #vpc_security_group_ids  = [aws_security_group.test1_sg.id]
   depends_on              = [aws_internet_gateway.test1_ig]
@@ -25,14 +24,14 @@ resource "aws_launch_template" "ecs_launch_config" {
     resource_type = "instance"
 
     tags = {
-      Name = "instance-${var.project_name}-private_subnets${count.index + 1}-${var.environment}"
+      Name = "instance-${var.project_name}-${var.environment}"
       Environment = var.environment
     }
   }
 }
 
 resource "aws_autoscaling_group" "ecs_asg" {
-  #count                     = length(var.public_subnet_cidrs)
+  count                     = length(var.public_subnet_cidrs)
   name_prefix               = "myasg-"
   vpc_zone_identifier       = [aws_subnet.public_subnets[count.index].id]
 
