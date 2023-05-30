@@ -30,11 +30,3 @@ resource "aws_autoscaling_group" "ecs_asg" {
   health_check_grace_period = 300
   health_check_type         = "EC2"
 }
-
-resource "aws_autoscaling_group_tag" "ecs_asg_tag" {
-  count = length(var.private_subnet_cidrs)
-
-  tags = {
-    Name = "${var.ecs_cluster_name}-${count.index}"
-  }
-}
