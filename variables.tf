@@ -6,6 +6,11 @@
 #  type = string
 #}
 
+variable "environment" {
+  type = string
+  default = "dev"
+}
+
 variable "allow_ip" {
   type = list(string)
   sensitive = true  

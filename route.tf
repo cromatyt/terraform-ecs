@@ -10,9 +10,10 @@ resource "aws_route_table" "test1_route" {
     gateway_id = aws_internet_gateway.test1_ig.id
   }
 
-  tags = {
-    Name = "test1_route"
-  }
+   tags = {
+    Name        = "sb-${aws_route_table.test1_route[count.index].arn}"
+    Environment = var.environment
+ }
 }
 
 resource "aws_route_table_association" "test1_route_asso_pub" {
