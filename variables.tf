@@ -6,6 +6,11 @@
 #  type = string
 #}
 
+variable "project_name" {
+  type = string
+  default = "testing"
+}
+
 variable "environment" {
   type = string
   default = "dev"

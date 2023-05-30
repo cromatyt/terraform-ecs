@@ -8,7 +8,7 @@ resource "aws_vpc" "test1_vpc" {
   enable_dns_hostnames = true
 
   tags = {
-    Name        = "vpc-${aws_vpc.test1_vpc.arn}"
+    Name        = "vpc-${var.project_name}-${var.env}"
     Environment = var.environment
   }
 }
