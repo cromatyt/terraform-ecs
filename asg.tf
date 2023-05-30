@@ -29,7 +29,6 @@ resource "aws_launch_template" "ecs_launch_config" {
       Environment = var.environment
     }
   }
-  }
 }
 
 resource "aws_autoscaling_group" "ecs_asg" {
