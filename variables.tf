@@ -11,6 +11,11 @@ variable "environment" {
   default = "dev"
 }
 
+variable "docker_version" {
+  type = string
+  default = "23.0.3"
+}
+
 variable "allow_ip" {
   type = list(string)
   sensitive = true  

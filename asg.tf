@@ -3,7 +3,7 @@
 ######################
 
 locals {
-  ecs_agent = templatefile("${path.module}/ecs-agent.sh", { ecs_cluster_name = var.ecs_cluster_name })
+  ecs_agent = templatefile("${path.module}/ecs-agent.sh", { ecs_cluster_name = var.ecs_cluster_name, DOCKER_VERSION = var.docker_version })
 }
 
 resource "aws_launch_template" "ecs_launch_config" {

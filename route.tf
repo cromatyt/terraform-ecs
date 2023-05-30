@@ -11,7 +11,7 @@ resource "aws_route_table" "test1_route" {
   }
 
    tags = {
-    Name        = "sb-${aws_route_table.test1_route[count.index].arn}"
+    Name        = "sb-${aws_route_table.test1_route.arn}"
     Environment = var.environment
  }
 }
