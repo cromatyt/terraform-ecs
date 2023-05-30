@@ -36,4 +36,11 @@ resource "aws_autoscaling_group" "ecs_asg" {
   max_size                  = 3
   health_check_grace_period = 300
   health_check_type         = "EC2"
+
+  instance_refresh {
+    strategy = "Rolling"
+    preferences {
+      min_healthy_percentage = 50
+    }
+  }
 }
