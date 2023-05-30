@@ -9,7 +9,7 @@ locals {
 resource "aws_launch_template" "ecs_launch_config" {
   name                    = "my-launch-template"
   image_id                = var.ami
-  vpc_security_group_ids  = [aws_security_group.test1_sg.id]
+  #vpc_security_group_ids  = [aws_security_group.test1_sg.id]
   depends_on              = [aws_internet_gateway.test1_ig]
   user_data               = base64encode(local.ecs_agent)
   instance_type           = var.ec2_instance_type
@@ -17,6 +17,7 @@ resource "aws_launch_template" "ecs_launch_config" {
 
   network_interfaces {
     associate_public_ip_address = true
+    security_groups  = [aws_security_group.test1_sg.id]
   }
 }
 
