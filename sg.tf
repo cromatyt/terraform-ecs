@@ -44,7 +44,7 @@ resource "aws_security_group_rule" "test1_ingress_ssh" {
 
 resource "aws_security_group_rule" "test1_ingress_ssh" {
   type              = "ingress"
-  description       = "SSH from VPC"
+  description       = "SSH from VPC for all"
   from_port         = 22
   to_port           = 22
   protocol          = "tcp"
