@@ -42,7 +42,7 @@ resource "aws_security_group_rule" "test1_ingress_ssh" {
   security_group_id = aws_security_group.test1_sg.id
 }
 
-resource "aws_security_group_rule" "test1_ingress_ssh" {
+resource "aws_security_group_rule" "test1_ingress_ssh_all" {
   type              = "ingress"
   description       = "SSH from VPC for all"
   from_port         = 22
