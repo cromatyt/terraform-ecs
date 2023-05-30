@@ -52,6 +52,12 @@ variable "az" {
  default     = ["eu-west-1a", "eu-west-1b", "eu-west-1c"]
 }
 
+variable "cidr" {
+  type = string
+  description = "CIDR value"
+  default = "10.0.0.0/16"
+}
+
 variable "public_subnet_cidrs" {
  type        = list(string)
  description = "Public Subnet CIDR values"
