@@ -14,7 +14,7 @@ Target => deploy ecs cluster on ec2 instances.
 
     2. Copy your public key to your Github actions with `EC2_SSH_PUB_KEY` secret name.
 
-2. Set AWS access in Github action secrets
+2. Set AWS access in Github action secrets:
 
 | Name | Descrtption |
 | --- | --- |
@@ -22,4 +22,4 @@ Target => deploy ecs cluster on ec2 instances.
 |AWS_SECRET_ACCESS_KEY| Your AWS SECRET KEY |
 |AWS_DEFAULT_REGION | Your AWS region |
 
-3. Set the IP list that you want to allow to access to yout security group, Github action secrets name `MY_IP`
+3. Set the IP list that you want to allow to access to yout security group, Github action secrets name `MY_IP`.
