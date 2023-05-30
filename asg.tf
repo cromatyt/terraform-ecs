@@ -8,6 +8,7 @@ locals {
 
 resource "aws_launch_template" "ecs_launch_config" {
   name                    = "my-launch-template"
+  count                   = length(var.public_subnet_cidrs)
   image_id                = var.ami
   #vpc_security_group_ids  = [aws_security_group.test1_sg.id]
   depends_on              = [aws_internet_gateway.test1_ig]
@@ -18,6 +19,16 @@ resource "aws_launch_template" "ecs_launch_config" {
   network_interfaces {
     associate_public_ip_address = true
     security_groups  = [aws_security_group.test1_sg.id]
+  }
+
+  tag_specifications {
+    resource_type = "instance"
+
+    tags = {
+      Name = "instance-${var.project_name}-private_subnets${count.index + 1}-${var.environment}"
+      Environment = var.environment
+    }
+  }
   }
 }
 
