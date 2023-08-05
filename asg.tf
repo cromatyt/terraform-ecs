@@ -2,16 +2,16 @@
 # Auto scaling group #
 ######################
 
-locals {
-  ecs_agent = templatefile("${path.module}/ecs-agent.sh", { ecs_cluster_name = var.ecs_cluster_name, DOCKER_VERSION = var.docker_version })
-}
+#locals {
+#  ecs_agent = templatefile("${path.module}/ecs-agent.sh", { ecs_cluster_name = var.ecs_cluster_name, DOCKER_VERSION = var.docker_version })
+#}
 
 resource "aws_launch_template" "ecs_launch_config" {
   name                    = "my-launch-template"
   image_id                = var.ami
   #vpc_security_group_ids  = [aws_security_group.test1_sg.id]
   depends_on              = [aws_internet_gateway.test1_ig]
-  user_data               = base64encode(local.ecs_agent)
+  user_data               = base64encode(templatefile("${path.module}/ecs-agent.sh", { ecs_cluster_name = var.ecs_cluster_name, DOCKER_VERSION = var.docker_version }))
   instance_type           = var.ec2_instance_type
   key_name                = var.key_name # for ssh key config
 
@@ -20,6 +20,9 @@ resource "aws_launch_template" "ecs_launch_config" {
     security_groups  = [aws_security_group.test1_sg.id]
   }
 
+  iam_instance_profile {
+    name = aws_iam_instance_profile.ecs_iam_agent.name
+  }
   tag_specifications {
     resource_type = "instance"
 

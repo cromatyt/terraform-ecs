@@ -19,10 +19,9 @@ echo \
 ## Install docker packages
 sudo apt-get -y update
 
-sudo newgrp docker
-sudo usermod -aG docker ubuntu # here ubuntu is the ami default user
-
 sudo apt-get install -y docker-ce=$DOCKER_VERSION docker-ce-cli=$DOCKER_VERSION containerd.io docker-buildx-plugin docker-compose-plugin
+
+sudo usermod -aG docker ubuntu # here ubuntu is the ami default user
 
 sudo systemctl enable docker
 sudo systemctl start docker
