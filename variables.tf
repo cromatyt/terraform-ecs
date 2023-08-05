@@ -18,7 +18,7 @@ variable "environment" {
 
 variable "docker_version" {
   type = string
-  default = "24.0.5"
+  default = "5:24.0.5-1~ubuntu.22.04~jammy"
 }
 
 variable "allow_ip" {
