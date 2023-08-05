@@ -18,17 +18,17 @@ variable "environment" {
 
 variable "docker_version" {
   type = string
-  default = "23.0.3"
+  default = "24.0.5"
 }
 
 variable "allow_ip" {
   type = list(string)
-  sensitive = true  
+  sensitive = true
 }
 
 variable "ami" {
   type = string
-  default = "ami-013d87f7217614e10" # Red Hat 9
+  default = "ami-01dd271720c1ba44f" # Ubuntu 22.04 LTS X86
 }
 
 variable "key_name" {
@@ -84,8 +84,3 @@ variable "private_subnet_cidrs" {
  description = "Private Subnet CIDR values"
  default     = ["10.0.4.0/24", "10.0.5.0/24", "10.0.6.0/24"]
 }
-
-#variable "some_password" {
-#  type = string
-#  sensitive = true
-#}

@@ -7,6 +7,7 @@ resource "aws_subnet" "public_subnets" {
  vpc_id            = aws_vpc.test1_vpc.id
  cidr_block        = var.public_subnet_cidrs[count.index]
  availability_zone = var.az[count.index]
+ #map_public_ip_on_launch = true
  
  tags = {
     Name        = "sb-${var.project_name}-public_subnets${count.index + 1}-${var.environment}"

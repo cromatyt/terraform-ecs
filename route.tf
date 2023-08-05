@@ -2,7 +2,7 @@
 # Route table #
 ###############
 
-resource "aws_route_table" "test1_route" {
+resource "aws_route_table" "public_test1_route" {
   vpc_id = aws_vpc.test1_vpc.id
 
   route {
@@ -11,13 +11,13 @@ resource "aws_route_table" "test1_route" {
   }
 
    tags = {
-    Name        = "route-${var.project_name}-${var.environment}}"
+    Name        = "public-route-${var.project_name}-${var.environment}}"
     Environment = var.environment
  }
 }
 
 resource "aws_route_table_association" "test1_route_asso_pub" {
-  count           = length(var.public_subnet_cidrs)
+  count           = var.public_subnet_cidrs ? length(var.public_subnet_cidrs) : 0
   subnet_id       = aws_subnet.public_subnets[count.index].id
-  route_table_id  = aws_route_table.test1_route.id
+  route_table_id  = aws_route_table.public_test1_route.id
 }
