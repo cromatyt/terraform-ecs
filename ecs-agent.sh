@@ -19,7 +19,7 @@ echo \
 ## Install docker packages
 sudo apt-get -y update
 
-sudo apt-get install -y docker-ce=$DOCKER_VERSION docker-ce-cli=$DOCKER_VERSION containerd.io docker-buildx-plugin docker-compose-plugin
+sudo apt-get install -y docker-ce=${DOCKER_VERSION} docker-ce-cli=${DOCKER_VERSION} containerd.io docker-buildx-plugin docker-compose-plugin
 
 sudo usermod -aG docker ubuntu # here ubuntu is the ami default user
 
