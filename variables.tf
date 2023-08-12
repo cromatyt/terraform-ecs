@@ -36,9 +36,10 @@ variable "key_name" {
   default = "test1_key"
 }
 
-variable "ec2_ssh_key" {
+variable "ec2_ssh_key_path" {
   type = string
-  sensitive = true
+  #sensitive = true
+  default = "./ssh/ec2.pub"
 }
 
 variable "ec2_instance_type" {

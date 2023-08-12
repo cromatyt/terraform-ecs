@@ -19,5 +19,6 @@ resource "aws_route_table" "public_test1_route" {
 resource "aws_route_table_association" "test1_route_asso_pub" {
   count           = length(var.public_subnet_cidrs)
   subnet_id       = aws_subnet.public_subnets[count.index].id
+  # subnet_id       = element(aws_subnet.public_subnets[*].id, count.index)
   route_table_id  = aws_route_table.public_test1_route.id
 }

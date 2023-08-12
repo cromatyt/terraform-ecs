@@ -32,15 +32,15 @@ resource "aws_security_group_rule" "test1_ingress_https" {
   security_group_id = aws_security_group.test1_sg.id
 }
 
-resource "aws_security_group_rule" "test1_ingress_ssh" {
-  type              = "ingress"
-  description       = "SSH from VPC"
-  from_port         = 22
-  to_port           = 22
-  protocol          = "tcp"
-  cidr_blocks       = var.allow_ip
-  security_group_id = aws_security_group.test1_sg.id
-}
+# resource "aws_security_group_rule" "test1_ingress_ssh" {
+  # type              = "ingress"
+  # description       = "SSH from VPC"
+  # from_port         = 22
+  # to_port           = 22
+  # protocol          = "tcp"
+  # cidr_blocks       = var.allow_ip
+  # security_group_id = aws_security_group.test1_sg.id
+# }
 
 resource "aws_security_group_rule" "test1_ingress_ssh_all" {
   type              = "ingress"

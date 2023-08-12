@@ -25,3 +25,15 @@ To do associate ec2 instance to ecs cluster.
 |AWS_DEFAULT_REGION | Your AWS region |
 
 3. Set the IP list that you want to allow to access to yout security group, Github action secrets name `MY_IP`.
+
+## Check
+
+- [X] VPC
+- [X] Subnet
+- [X] Internet Gateway (ig)
+- [X] Route Table
+- [x] Security group (sg)
+- [ ] Autoscaling group (asg)
+- [ ] IAM
+- [X] SSH
+- [ ] Loadbalancer
