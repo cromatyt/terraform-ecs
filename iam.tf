@@ -4,7 +4,7 @@
 
 data "aws_iam_policy_document" "ecs_assume_role" {
   statement {
-    actions = ["sts:AssumeRole", "ecs:RegisterContainerInstance"]
+    actions = ["sts:AssumeRole"]
 
     principals {
       type        = "Service"
@@ -18,10 +18,11 @@ resource "aws_iam_role" "ecs_iam_role" {
   assume_role_policy = data.aws_iam_policy_document.ecs_assume_role.json
 }
 
-# resource "aws_iam_role_policy_attachment" "ecs_iam_policy" {
-  # role       = aws_iam_role.ecs_iam_role.name
+resource "aws_iam_role_policy_attachment" "ecs_iam_policy" {
+  role       = aws_iam_role.ecs_iam_role.name
   # policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
-# }
+  policy_arn = "arn:aws:iam::354256391653:role/ecsInstanceRole"
+}
 
 resource "aws_iam_instance_profile" "ecs_iam_agent" {
   name = "ecs_iam_agent"
