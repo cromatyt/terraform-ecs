@@ -7,8 +7,8 @@
 #}
 
 resource "aws_launch_template" "ecs_launch_config" {
-  name_prefix             = "${var.environment}-"
-  name                    = "my-launch-template"
+  # name_prefix             = "${var.environment}-"
+  name                    = "${var.environment}-my-launch-template"
   image_id                = var.ami
   depends_on              = [aws_internet_gateway.test1_ig]
   # user_data     = filebase64("user_data.sh")
