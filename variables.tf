@@ -38,7 +38,7 @@ variable "key_name" {
 
 variable "ec2_ssh_key_path" {
   type = string
-  #sensitive = true
+  sensitive = true
   default = "./ssh/ec2.pub"
 }
 

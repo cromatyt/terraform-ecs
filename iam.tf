@@ -4,7 +4,7 @@
 
 data "aws_iam_policy_document" "ecs_assume_role" {
   statement {
-    actions = ["sts:AssumeRole"]
+    actions = ["sts:AssumeRole", "ecs:RegisterContainerInstance"]
 
     principals {
       type        = "Service"
