@@ -47,7 +47,8 @@ resource "aws_ecs_service" "ecs_service" {
     enable   = true
     rollback = true
     alarm_names = [
-      aws_cloudwatch_metric_alarm.alarm_test1.alarm_name
+      aws_cloudwatch_metric_alarm.alarm_test1_CPU.alarm_name,
+      aws_cloudwatch_metric_alarm.alarm_test1_MEM.alarm_name,
     ]
   }
 }
