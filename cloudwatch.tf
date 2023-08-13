@@ -1,5 +1,5 @@
-resource "aws_cloudwatch_metric_alarm" "alarm_test1" {
-  alarm_name                = "alarm-test1"
+resource "aws_cloudwatch_metric_alarm" "alarm_test1_CPU" {
+  alarm_name                = "alarm-test1-CPU"
   comparison_operator       = "GreaterThanOrEqualToThreshold"
   evaluation_periods        = 1
   metric_name               = "CPUUtilization"
