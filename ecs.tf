@@ -73,35 +73,37 @@ resource "aws_ecs_task_definition" "task_definition_test1" {
 }
 
 resource "aws_ecs_service" "ecs_service" {
-  name            = "service_test1"
-  iam_role        = aws_iam_role.ecs_iam_role.arn #need lb
-  cluster         = aws_ecs_cluster.ecs_cluster_test1.id
-  task_definition = aws_ecs_task_definition.task_definition_test1.arn
-  desired_count   = 1
+  name                               = "service_test1"
+  iam_role                           = aws_iam_role.ecs_iam_role.arn #need lb
+  cluster                            = aws_ecs_cluster.ecs_cluster_test1.id
+  task_definition                    = aws_ecs_task_definition.task_definition_test1.arn
+  desired_count                      = 1
+  deployment_minimum_healthy_percent = var.ecs_task_deployment_minimum_healthy_percent
+  deployment_maximum_percent         = var.ecs_task_deployment_maximum_percent
   #launch_type     = "EC2"
 
-  # load_balancer {
-  #   target_group_arn = aws_alb_target_group.XXXX.arn
-  #   container_name   = "service_test1"
-  #   container_port   = 80
-  # }
+  load_balancer {
+    target_group_arn = aws_alb_target_group.XXXX.arn
+    container_name   = "service_test1"
+    container_port   = 80
+  }
 
-  # ## Spread tasks evenly accross all Availability Zones for High Availability
-  # ordered_placement_strategy {
-  #   type  = "spread"
-  #   field = "attribute:ecs.availability-zone"
-  # }
+  ## Spread tasks evenly accross all Availability Zones for High Availability
+  ordered_placement_strategy {
+    type  = "spread"
+    field = "attribute:ecs.availability-zone"
+  }
 
   ## Make use of all available space on the Container Instances
-  # placement_constraints {
-  #   type       = "memberOf"
-  #   expression = "attribute:ecs.availability-zone in [us-west-2a, us-west-2b]"
-  # }
+  placement_constraints {
+    type       = "memberOf"
+    expression = "attribute:ecs.availability-zone in [us-west-2a, us-west-2b]"
+  }
 
   ## Optional: Allow external changes without Terraform plan difference
-  # lifecycle {
-  #   ignore_changes = [desired_count]
-  # }
+  lifecycle {
+    ignore_changes = [desired_count]
+  }
 
   alarms {
     enable   = true
