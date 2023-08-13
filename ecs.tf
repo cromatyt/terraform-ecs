@@ -54,7 +54,8 @@ resource "aws_ecs_task_definition" "task_definition_test1" {
       portMappings = [
         {
           containerPort = 80
-          hostPort      = 80
+          hostPort      = 0 # need LB !
+          protocol      = "tcp"
         }
       ]
       "healthcheck": {
@@ -77,7 +78,7 @@ resource "aws_ecs_service" "ecs_service" {
   iam_role                           = aws_iam_role.ecs_iam_role.arn #need lb
   cluster                            = aws_ecs_cluster.ecs_cluster_test1.id
   task_definition                    = aws_ecs_task_definition.task_definition_test1.arn
-  desired_count                      = 1
+  desired_count                      = 2
   # deployment_minimum_healthy_percent = 
   # deployment_maximum_percent         = 
   #launch_type     = "EC2"
@@ -89,10 +90,10 @@ resource "aws_ecs_service" "ecs_service" {
   }
 
   ## Spread tasks evenly accross all Availability Zones for High Availability
-  ordered_placement_strategy {
-    type  = "spread"
-    field = "attribute:ecs.availability-zone"
-  }
+  # ordered_placement_strategy {
+  #   type  = "spread"
+  #   field = "attribute:ecs.availability-zone"
+  # }
 
   ## Make use of all available space on the Container Instances
   # placement_constraints {
@@ -101,9 +102,9 @@ resource "aws_ecs_service" "ecs_service" {
   # }
 
   ## Optional: Allow external changes without Terraform plan difference
-  lifecycle {
-    ignore_changes = [desired_count]
-  }
+  # lifecycle {
+  #   ignore_changes = [desired_count]
+  # }
 
   alarms {
     enable   = true
