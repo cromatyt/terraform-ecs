@@ -1,20 +1,18 @@
 # Terraform aws
 
+:warning: In this example I use ubuntu 22:04 ami which is [not officially support by ec2](https://github.com/aws/amazon-ecs-agent/issues/3227) !
+
+That why I add AppArmor section in ecs-agent.sh file :warning:
+
 ## Description
 
-This project will deploy an ec2 environment on AWS.
-Currently, it deploys an ec2 instance on each subnet of your AWS region.
-Target => deploy ecs cluster on ec2 instances.
-
-To do associate ec2 instance to ecs cluster.
+This project will deploy an ECS environment on AWS with EC2 instances (no Fargate).
 
 ## Required
 
 1. Configure SSH
 
-    1. Generate ed25519 pem key local (here on linux device): `ssh-keygen -t ed25519 -m PEM -f FILE_NAME.pem -C 'SOME COMMENT'`
-
-    2. Copy your public key to your Github actions with `EC2_SSH_PUB_KEY` secret name.
+    Generate ed25519 pem key local (here on linux device): `ssh-keygen -t ed25519 -m PEM -f FILE_NAME.pem -C 'SOME COMMENT'` and copy the publique key into the ssh folder project
 
 2. Set AWS access in Github action secrets:
 
@@ -24,9 +22,9 @@ To do associate ec2 instance to ecs cluster.
 |AWS_SECRET_ACCESS_KEY| Your AWS SECRET KEY |
 |AWS_DEFAULT_REGION | Your AWS region |
 
-3. Set the IP list that you want to allow to access to yout security group, Github action secrets name `MY_IP`.
+3. Set the IP list that you want to allow to access to your security group, Github action secrets name `MY_IP`.
 
-## Check
+## List of verify sections
 
 - [X] VPC
 - [X] Subnet
@@ -39,3 +37,4 @@ To do associate ec2 instance to ecs cluster.
 - [ ] ECS
 - [ ] ECR
 - [ ] Loadbalancer
+- [ ] Cloudwatch

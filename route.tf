@@ -2,6 +2,7 @@
 # Route table #
 ###############
 
+# Here you create public route only because the private one is automatically create
 resource "aws_route_table" "public_test1_route" {
   vpc_id = aws_vpc.test1_vpc.id
 
