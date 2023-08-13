@@ -78,8 +78,8 @@ resource "aws_ecs_service" "ecs_service" {
   cluster                            = aws_ecs_cluster.ecs_cluster_test1.id
   task_definition                    = aws_ecs_task_definition.task_definition_test1.arn
   desired_count                      = 1
-  deployment_minimum_healthy_percent = var.ecs_task_deployment_minimum_healthy_percent
-  deployment_maximum_percent         = var.ecs_task_deployment_maximum_percent
+  # deployment_minimum_healthy_percent = 
+  # deployment_maximum_percent         = 
   #launch_type     = "EC2"
 
   load_balancer {
