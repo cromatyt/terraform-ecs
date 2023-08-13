@@ -95,10 +95,10 @@ resource "aws_ecs_service" "ecs_service" {
   }
 
   ## Make use of all available space on the Container Instances
-  placement_constraints {
-    type       = "memberOf"
-    expression = "attribute:ecs.availability-zone in [us-west-2a, us-west-2b]"
-  }
+  # placement_constraints {
+  #   type       = "memberOf"
+  #   expression = "attribute:ecs.availability-zone in [us-west-2a, us-west-2b]"
+  # }
 
   ## Optional: Allow external changes without Terraform plan difference
   lifecycle {
