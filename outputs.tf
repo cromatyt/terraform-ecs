@@ -3,10 +3,8 @@
 #########
 
 data "aws_instances" "my_intances_test1" {
-  depends_on = [ "aws_autoscaling_group.ecs_asg" ]
-  
   instance_tags {
-    Name = "instance-${var.project_name}-${var.environment}"
+    name = "instance-${var.project_name}-${var.environment}"
   }
 }
 
