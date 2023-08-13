@@ -57,6 +57,11 @@ variable "ec2_instance_name" {
   default = "DefaultInstanceName"
 }
 
+variable "ecs_capacity_provider" {
+  type = string
+  default = "CP_test1"  
+}
+
 variable "ecs_cluster_name" {
   type = string
   default = "ECStest1"  

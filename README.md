@@ -38,3 +38,4 @@ This project will deploy an ECS environment on AWS with EC2 instances (no Fargat
 - [ ] ECR
 - [ ] Loadbalancer
 - [ ] Cloudwatch
+- [ ] Output
