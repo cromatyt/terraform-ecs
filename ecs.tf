@@ -49,6 +49,13 @@ resource "aws_ecs_task_definition" "task_definition_test1" {
           hostPort      = 80
         }
       ]
+      "healthcheck": {
+        "command": ["CMD-SHELL", "curl 127.0.0.1:80"]
+        # "interval": ,
+        # "timeout": ,
+        # "retries": ,
+        # "startPeriod":
+      }
     }
   ])
 
