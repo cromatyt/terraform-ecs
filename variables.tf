@@ -72,6 +72,11 @@ variable "lb_name" {
   default = "lb-test1"  
 }
 
+variable "lb_target_group" {
+  type = string
+  default = "lb-target-group-test1"
+}
+
 variable "az" {
  type        = list(string)
  description = "Availability Zones"

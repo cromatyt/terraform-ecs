@@ -74,7 +74,7 @@ resource "aws_ecs_task_definition" "task_definition_test1" {
 
 resource "aws_ecs_service" "ecs_service" {
   name            = "service_test1"
-  #iam_role        = aws_iam_role.ecs_iam_role.arn
+  iam_role        = aws_iam_role.ecs_iam_role.arn #need lb
   cluster         = aws_ecs_cluster.ecs_cluster_test1.id
   task_definition = aws_ecs_task_definition.task_definition_test1.arn
   desired_count   = 1

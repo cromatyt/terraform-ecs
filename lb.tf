@@ -22,3 +22,43 @@ resource "aws_lb" "lb_test1" {
     Environment = var.environment
   }
 }
+
+# https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lb_listener
+resource "aws_lb_listener" "lb_listener_http_test1" {
+  load_balancer_arn = aws_lb.lb_test1.arn
+  port              = "80"
+  protocol          = "HTTP"
+
+  default_action {
+    type = "fixed-response"
+
+    fixed_response {
+      content_type = "text/plain"
+      message_body = "Access denied"
+      status_code  = "403"
+    }
+  }
+
+  depends_on = [aws_lb.lb_test1]
+}
+
+resource "aws_lb_target_group" "lb_target_group_test1" {
+  name                 = var.lb_target_group
+  port                 = "80"
+  protocol             = "HTTP"
+  vpc_id               = aws_vpc.test1_vpc.id
+  deregistration_delay = 120 #defailt 300
+
+  health_check {
+    healthy_threshold   = "2"
+    unhealthy_threshold = "2"
+    interval            = "30"
+    matcher             = "200"
+    path                = "/"
+    port                = "traffic-port"
+    protocol            = "HTTP"
+    timeout             = "30"
+  }
+  
+  depends_on = [aws_lb.lb_test1]
+}
