@@ -67,6 +67,11 @@ variable "ecs_cluster_name" {
   default = "ECStest1"  
 }
 
+variable "lb_name" {
+  type = string
+  default = "lb_test1"  
+}
+
 variable "az" {
  type        = list(string)
  description = "Availability Zones"

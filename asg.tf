@@ -43,7 +43,7 @@ resource "aws_launch_template" "ecs_launch_config" {
 resource "aws_autoscaling_group" "ecs_asg" {
   # count                     = length(var.public_subnet_cidrs)
   name_prefix               = "myasg-"
-  vpc_zone_identifier       = [aws_subnet.public_subnets[0].id]
+  vpc_zone_identifier       = [aws_subnet.public_subnets.*.id]
 
   launch_template {
     id      = aws_launch_template.ecs_launch_config.id

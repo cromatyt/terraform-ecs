@@ -23,3 +23,8 @@ resource "aws_route_table_association" "test1_route_asso_pub" {
   # subnet_id       = element(aws_subnet.public_subnets[*].id, count.index)
   route_table_id  = aws_route_table.public_test1_route.id
 }
+
+# resource "aws_main_route_table_association" "public_main" {
+#   vpc_id         = aws_vpc.test1_vpc.id
+#   route_table_id = aws_route_table.public_test1_route.id
+# }

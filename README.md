@@ -35,8 +35,8 @@ This project will deploy an ECS environment on AWS with EC2 instances (no Fargat
 - [ ] Autoscaling group (asg)
 - [x] IAM
 - [X] SSH
-- [ ] ECS
+- [X] ECS
 - [ ] ECR
-- [ ] Loadbalancer # need remove ecs portMappings
+- [ ] Loadbalancer (lb) # need remove ecs portMappings
 - [ ] Cloudwatch
 - [ ] Output
