@@ -69,7 +69,7 @@ variable "ecs_cluster_name" {
 
 variable "lb_name" {
   type = string
-  default = "lb_test1"  
+  default = "lb-test1"  
 }
 
 variable "az" {
