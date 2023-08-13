@@ -23,7 +23,7 @@ resource "aws_launch_template" "ecs_launch_config" {
   }
 
   iam_instance_profile {
-    name = aws_iam_instance_profile.ecs_iam_agent.name #not the good one
+    name = aws_iam_instance_profile.ecs_iam_agent.name
   }
 
   monitoring {
@@ -41,9 +41,9 @@ resource "aws_launch_template" "ecs_launch_config" {
 }
 
 resource "aws_autoscaling_group" "ecs_asg" {
-  count                     = length(var.public_subnet_cidrs)
+  # count                     = length(var.public_subnet_cidrs)
   name_prefix               = "myasg-"
-  vpc_zone_identifier       = [aws_subnet.public_subnets[count.index].id]
+  vpc_zone_identifier       = [aws_subnet.public_subnets[0].id]
 
   launch_template {
     id      = aws_launch_template.ecs_launch_config.id

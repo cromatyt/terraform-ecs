@@ -34,6 +34,8 @@ To do associate ec2 instance to ecs cluster.
 - [X] Route Table
 - [x] Security group (sg)
 - [ ] Autoscaling group (asg)
-- [ ] IAM
+- [x] IAM
 - [X] SSH
+- [ ] ECS
+- [ ] ECR
 - [ ] Loadbalancer

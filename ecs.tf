@@ -19,7 +19,7 @@ resource "aws_ecs_task_definition" "task_definition_test1" {
     {
       name      = "container1"
       image     = "traefik/whoami:v1.9"
-      cpu       = 10
+      cpu       = 50
       memory    = 256
       essential = true
       portMappings = [
