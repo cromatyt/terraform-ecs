@@ -47,23 +47,37 @@ resource "aws_autoscaling_group" "ecs_asg" {
 
   launch_template {
     id      = aws_launch_template.ecs_launch_config.id
-    version = aws_launch_template.ecs_launch_config.latest_version
+    # version = aws_launch_template.ecs_launch_config.latest_version
+    version = "$Latest"
   }
 
   desired_capacity          = 1
   min_size                  = 1
   max_size                  = 3
-  # health_check_grace_period = 300
-  # health_check_type         = "EC2"
+  health_check_grace_period = 120
+  health_check_type         = "EC2"
+
+  protect_from_scale_in = true
+
+  enabled_metrics = [
+    "GroupMinSize",
+    "GroupMaxSize",
+    "GroupDesiredCapacity",
+    "GroupInServiceInstances",
+    "GroupPendingInstances",
+    "GroupStandbyInstances",
+    "GroupTerminatingInstances",
+    "GroupTotalInstances"
+  ]
 
   lifecycle {
     create_before_destroy = true
   }
 
-  # instance_refresh {
-    # strategy = "Rolling"
-    # preferences {
-      # min_healthy_percentage = 50
-    # }
-  # }
+  instance_refresh {
+    strategy = "Rolling"
+    preferences {
+      min_healthy_percentage = 50
+    }
+  }
 }
