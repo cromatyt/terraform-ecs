@@ -23,7 +23,7 @@ resource "aws_launch_template" "ecs_launch_config" {
   }
 
   iam_instance_profile {
-    name = aws_iam_instance_profile.ecs_iam_agent.name
+    name = aws_iam_instance_profile.ec2_iam_agent.name
   }
 
   monitoring {
