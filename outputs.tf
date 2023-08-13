@@ -5,7 +5,7 @@
 data "aws_instances" "my_intances_test1" {
   filter {
     name  = "tag:Name"
-    value = ["instance-${var.project_name}-${var.environment}"]
+    values = ["instance-${var.project_name}-${var.environment}"]
   }
 }
 
