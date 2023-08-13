@@ -62,3 +62,8 @@ resource "aws_lb_target_group" "lb_target_group_test1" {
   
   depends_on = [aws_lb.lb_test1]
 }
+
+resource "aws_lb_target_group_attachment" "test" {
+  target_group_arn = aws_lb_target_group.lb_target_group_test1.arn
+  target_id        = aws_ecs_service.ecs_service.id
+}
