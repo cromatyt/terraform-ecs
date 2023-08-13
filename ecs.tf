@@ -83,7 +83,7 @@ resource "aws_ecs_service" "ecs_service" {
   #launch_type     = "EC2"
 
   load_balancer {
-    target_group_arn = aws_alb_target_group.XXXX.arn
+    target_group_arn = aws_lb_target_group.lb_target_group_test1.arn
     container_name   = "service_test1"
     container_port   = 80
   }
