@@ -115,5 +115,5 @@ resource "aws_ecs_service" "ecs_service" {
     ]
   }
 
-  depends_on = [ aws_autoscaling_group.lb_target_group_test1 ]
+  depends_on = [ aws_autoscaling_group.ecs_asg ]
 }
