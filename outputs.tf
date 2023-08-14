@@ -24,10 +24,10 @@ output "instance_public_ip" {
 
 output "instance_name" {
   description = "Instance name"
-  value       = "${data.aws_instances.my_instances_test1.name}"
+  value       = "${data.aws_instances.my_instances_test1.id}"
 }
 
-# output "lb_dns" {
-  # description = "Load Balancer"
-  # value       = aws_lb.lb_test1.name
-# }
+output "lb_dns" {
+  description = "Load Balancer"
+  value       = "${element(aws_lb.lb_test1.dns_name)}"
+}
