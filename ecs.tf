@@ -44,6 +44,8 @@ resource "aws_ecs_task_definition" "task_definition_test1" {
   family                    = "td_test1"
   # requires_compatibilities  = ["EC2"]
 
+  skip_destroy               = true
+
   container_definitions = jsonencode([
     {
       name      = "container1"
