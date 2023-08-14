@@ -128,8 +128,7 @@ resource "aws_ecs_service" "ecs_service" {
     when = destroy
     command = "${path.module}/scripts/stop-tasks.sh"
     environment = {
-      # CLUSTER = self.name
-      CLUSTER = aws_ecs_cluster.ecs_cluster_test1.name
+      CLUSTER = self.name
     }
   }
 
