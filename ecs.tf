@@ -59,7 +59,7 @@ resource "aws_ecs_task_definition" "task_definition_test1" {
         }
       ]
       "healthcheck": {
-        "command": ["CMD", "curl 127.0.0.1"]
+        "command": ["CMD-SHELL", "curl -f 127.0.0.1"]
         # "interval": ,
         # "timeout": ,
         # "retries": ,
