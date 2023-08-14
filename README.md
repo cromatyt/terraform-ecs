@@ -25,6 +25,8 @@ This project will deploy an ECS environment on AWS with EC2 instances (no Fargat
 
 3. Configure/create an AWS S3 then edit version.tf => backend "s3" section
 
+4. You can custom ecs-agent.sh script if you want to add some packages/configurations
+
 ## List of verify sections
 
 - [X] VPC
