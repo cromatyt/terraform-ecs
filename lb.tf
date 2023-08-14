@@ -4,10 +4,10 @@
 
 resource "aws_lb" "lb_test1" {
   name               = var.lb_name
-  # internal           = false
-  # load_balancer_type = "application"
+  internal           = false
+  load_balancer_type = "application"
   security_groups    = [aws_security_group.test1_sg.id]
-  subnets            = aws_subnet.public_subnets.*.id
+  subnets            = [aws_subnet.public_subnets.*.id]
 
   # enable_deletion_protection = true
 
@@ -47,7 +47,7 @@ resource "aws_lb_target_group" "lb_target_group_test1" {
   port                 = "80"
   protocol             = "HTTP"
   vpc_id               = aws_vpc.test1_vpc.id
-  deregistration_delay = 120 #defailt 300
+  deregistration_delay = 120 #default 300
 
   health_check {
     healthy_threshold   = "2"
