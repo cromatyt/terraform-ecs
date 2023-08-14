@@ -123,8 +123,19 @@ resource "aws_ecs_service" "ecs_service" {
 
   depends_on = [ aws_autoscaling_group.ecs_asg ]
 
-  timeouts {
-    create = "2m"
-    delete = "2m"
+  # Prevent against "aws_ecs_service.ecs_service: Still destroying..." TimeOut
+  provisioner "local-exec" {
+    when = destroy
+    command = "${path.module}/scripts/stop-tasks.sh"
+    environment = {
+      # CLUSTER = self.name
+      CLUSTER = aws_ecs_cluster.ecs_cluster_test1.name
+    }
   }
+
+  # timeouts {
+  #   create = "2m"
+  #   delete = "2m"
+  # }
+
 }

@@ -3,7 +3,7 @@
 ######################
 
 #locals {
-#  ecs_agent = templatefile("${path.module}/ecs-agent.sh", { ecs_cluster_name = var.ecs_cluster_name, DOCKER_VERSION = var.docker_version })
+#  ecs_agent = templatefile("${path.module}/scripts/ecs-agent.sh", { ecs_cluster_name = var.ecs_cluster_name, DOCKER_VERSION = var.docker_version })
 #}
 
 resource "aws_launch_template" "ecs_launch_config" {
@@ -12,7 +12,7 @@ resource "aws_launch_template" "ecs_launch_config" {
   image_id                = var.ami
   depends_on              = [aws_internet_gateway.test1_ig]
   # user_data               = filebase64("user_data.sh")
-  user_data               = base64encode(templatefile("${path.module}/ecs-agent.sh", { ecs_cluster_name = var.ecs_cluster_name, DOCKER_VERSION = var.docker_version }))
+  user_data               = base64encode(templatefile("${path.module}/scripts/ecs-agent.sh", { ecs_cluster_name = var.ecs_cluster_name, DOCKER_VERSION = var.docker_version }))
   instance_type           = var.ec2_instance_type
   key_name                = var.key_name # for ssh key config
 
