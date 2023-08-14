@@ -38,6 +38,7 @@ resource "aws_security_group_rule" "test1_ingress_lb" {
   from_port         = 1024
   to_port           = 655535
   protocol          = "tcp"
+  cidr_blocks       = ["0.0.0.0/0"]
   security_group_id = aws_security_group.test1_sg.id
 }
 
