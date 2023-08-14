@@ -73,11 +73,6 @@ resource "aws_ecs_task_definition" "task_definition_test1" {
   tags = {
       Name = "td_test1"
   }
-
-  timeouts {
-    create = "2m"
-    delete = "2m"
-  }
 }
 
 resource "aws_ecs_service" "ecs_service" {
