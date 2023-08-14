@@ -27,7 +27,7 @@ output "instance_name" {
   value       = "${data.aws_instances.my_instances_test1.name}"
 }
 
-output "lb_dns" {
-  description = "Load Balancer"
-  value       = aws_lb.lb_test1.name
-}
+# output "lb_dns" {
+  # description = "Load Balancer"
+  # value       = aws_lb.lb_test1.name
+# }

@@ -72,5 +72,5 @@ resource "aws_security_group_rule" "test1_egress_all" {
   to_port           = 0
   protocol          = "-1" # mean all
   cidr_blocks       = ["0.0.0.0/0"]
-  security_group_id = aws_security_group.*.id
+  security_group_id = aws_security_group.test1_sg_ssh.id
 }
