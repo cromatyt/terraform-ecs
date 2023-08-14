@@ -36,7 +36,7 @@ resource "aws_security_group_rule" "test1_ingress_lb" {
   type              = "ingress"
   description       = "Allow ingress traffic from LB dynamic port"
   from_port         = 1024
-  to_port           = 655535
+  to_port           = 65535
   protocol          = "tcp"
   cidr_blocks       = ["0.0.0.0/0"]
   security_group_id = aws_security_group.test1_sg.id
