@@ -32,7 +32,7 @@ This project will deploy an ECS environment on AWS with EC2 instances (no Fargat
 - [X] Internet Gateway (ig)
 - [X] Route Table
 - [x] Security group (sg)
-- [x] Autoscaling group (asg)
+- [ ] Autoscaling group (asg)
 - [x] IAM
 - [X] SSH
 - [X] ECS
