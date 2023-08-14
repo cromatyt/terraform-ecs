@@ -57,7 +57,7 @@ resource "aws_lb_target_group" "lb_target_group_test1" {
   health_check {
     healthy_threshold   = "2"
     unhealthy_threshold = "2"
-    interval            = "60"
+    interval            = "120"
     matcher             = "200,301,302"
     path                = "/"
     # port                = "traffic-port"
