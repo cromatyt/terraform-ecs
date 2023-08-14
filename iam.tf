@@ -47,10 +47,33 @@ resource "aws_iam_role" "ecs_iam_role" {
   assume_role_policy = data.aws_iam_policy_document.ecs_assume_role.json
 }
 
-resource "aws_iam_role_policy" "ecs_iam_role_policy" {
-  name = "test_policy"
-  role = aws_iam_role.ecs_iam_role.id
-}
+# data "aws_iam_policy_document" "ecs_service_role_policy" {
+#   statement {
+#     effect  = "Allow"
+#     actions = [
+#       "ec2:AuthorizeSecurityGroupIngress",
+#       "ec2:Describe*",
+#       "ec2:DescribeTags",
+#       "elasticloadbalancing:DeregisterInstancesFromLoadBalancer",
+#       "elasticloadbalancing:DeregisterTargets",
+#       "elasticloadbalancing:Describe*",
+#       "elasticloadbalancing:RegisterInstancesWithLoadBalancer",
+#       "elasticloadbalancing:RegisterTargets",
+#       "logs:CreateLogGroup",
+#       "logs:CreateLogStream",
+#       "logs:DescribeLogStreams",
+#       "logs:PutSubscriptionFilter",
+#       "logs:PutLogEvents"
+#     ]
+#     resources = ["*"]
+#   }
+# }
+
+# resource "aws_iam_role_policy" "ecs_iam_role_policy" {
+#   name   = "ecs_iam_policy"
+#   policy = data.aws_iam_policy_document.ecs_service_role_policy.json
+#   role   = aws_iam_role.ecs_iam_role.id
+# }
 
 resource "aws_iam_role_policy_attachment" "ecs_iam_policy_attach" {
   role       = aws_iam_role.ecs_iam_role.name
