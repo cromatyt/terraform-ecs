@@ -121,8 +121,6 @@ resource "aws_ecs_service" "ecs_service" {
     ]
   }
 
-  depends_on = [ aws_autoscaling_group.ecs_asg ]
-
   # Prevent against "aws_ecs_service.ecs_service: Still destroying..." TimeOut
   provisioner "local-exec" {
     when = destroy
@@ -132,9 +130,7 @@ resource "aws_ecs_service" "ecs_service" {
     }
   }
 
-  # timeouts {
-  #   create = "2m"
-  #   delete = "2m"
-  # }
+  # To prevent ECS service to get stuck in the DRAINING state (need aws_iam_role_policy)
+  depends_on = [ aws_iam_role_policy.ecs_iam_role, aws_autoscaling_group.ecs_asg]
 
 }
