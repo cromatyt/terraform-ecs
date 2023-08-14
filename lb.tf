@@ -4,8 +4,8 @@
 
 resource "aws_lb" "lb_test1" {
   name               = var.lb_name
-  internal           = false
-  load_balancer_type = "application"
+  # internal           = false
+  # load_balancer_type = "application"
   security_groups    = [aws_security_group.test1_sg.id]
   subnets            = aws_subnet.public_subnets.*.id
 
