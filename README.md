@@ -27,7 +27,7 @@ This project will deploy an ECS environment on AWS with EC2 instances (no Fargat
 
 4. You can custom ecs-agent.sh script if you want to add some packages/configurations
 
-## List of verify sections
+## Verify sections
 
 - [X] VPC
 - [X] Subnet

@@ -2,7 +2,7 @@
 # Ouput #
 #########
 
-data "aws_instances" "my_intances_test1" {
+data "aws_instances" "my_instances_test1" {
   filter {
     name  = "tag:Name"
     values = ["instance-${var.project_name}-${var.environment}"]
@@ -18,13 +18,13 @@ data "aws_instances" "my_intances_test1" {
 output "instance_public_ip" {
  description = "Public IP address of the EC2 instance"
 #  value       = aws_instance.test1[*].public_ip
- value       = "${data.aws_instances.my_intances_test1.public_ips}"
+ value       = "${data.aws_instances.my_instances_test1.public_ips}"
  sensitive   = false
 }
 
 output "instance_name" {
   description = "Instance name"
-  value       = data.aws_instances.my_instances_test1.name
+  value       = "${data.aws_instances.my_instances_test1.name}"
 }
 
 output "lb_dns" {
