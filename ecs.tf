@@ -118,7 +118,7 @@ resource "aws_ecs_service" "ecs_service" {
   depends_on = [ aws_autoscaling_group.ecs_asg ]
 
   timeouts {
-    create = "5m"
-    delete = "5m"
+    create = "2m"
+    delete = "2m"
   }
 }
