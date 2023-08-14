@@ -1,5 +1,3 @@
-#!/bin/bash
-
 SERVICES="$(aws ecs list-services --cluster "${CLUSTER}" | grep "${CLUSTER}" || true | sed -e 's/"//g' -e 's/,//')"
 
 for SERVICE in $SERVICES

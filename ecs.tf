@@ -124,7 +124,7 @@ resource "aws_ecs_service" "ecs_service" {
   # Prevent against "aws_ecs_service.ecs_service: Still destroying..." TimeOut
   provisioner "local-exec" {
     when = destroy
-    command = "${path.module}/scripts/stop-tasks.sh"
+    command = "chmod +x ${path.module}/scripts/stop-tasks.sh"
     environment = {
       CLUSTER = self.name
     }
