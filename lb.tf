@@ -54,16 +54,16 @@ resource "aws_lb_target_group" "lb_target_group_test1" {
   vpc_id               = aws_vpc.test1_vpc.id
   deregistration_delay = 120 #default 300
 
-  health_check {
-    healthy_threshold   = "2"
-    unhealthy_threshold = "2"
-    interval            = "60"
-    matcher             = "200"
-    path                = "/"
+  # health_check {
+    # healthy_threshold   = "2"
+    # unhealthy_threshold = "2"
+    # interval            = "60"
+    # matcher             = "200"
+    # path                = "/"
     # port                = "traffic-port"
-    protocol            = "HTTP"
-    timeout             = "30"
-  }
+    # protocol            = "HTTP"
+    # timeout             = "30"
+  # }
   
   depends_on = [aws_lb.lb_test1]
 }
