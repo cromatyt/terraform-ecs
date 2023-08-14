@@ -60,9 +60,9 @@ resource "aws_lb_target_group" "lb_target_group_test1" {
     interval            = "60"
     matcher             = "200,301,302"
     path                = "/"
-    port                = "traffic-port"
-    protocol            = "HTTP"
-    timeout             = "30"
+    # port                = "traffic-port"
+    # protocol            = "HTTP"
+    timeout             = "60"
   }
   
   depends_on = [aws_lb.lb_test1]
