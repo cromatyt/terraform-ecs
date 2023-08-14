@@ -22,6 +22,12 @@ output "instance_public_ip" {
  sensitive   = false
 }
 
-# output "security_group_test1_sg" {
-  # value = aws_security_group.test1_sg.id
-# }
+output "instance_name" {
+  description = "Instance name"
+  value       = data.aws_instances.my_instances_test1.name
+}
+
+output "lb_dns" {
+  description = "Load Balancer"
+  value       = aws_lb.lb_test1.name
+}

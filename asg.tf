@@ -11,14 +11,14 @@ resource "aws_launch_template" "ecs_launch_config" {
   name                    = "${var.environment}-my-launch-template"
   image_id                = var.ami
   depends_on              = [aws_internet_gateway.test1_ig]
-  # user_data     = filebase64("user_data.sh")
+  # user_data               = filebase64("user_data.sh")
   user_data               = base64encode(templatefile("${path.module}/ecs-agent.sh", { ecs_cluster_name = var.ecs_cluster_name, DOCKER_VERSION = var.docker_version }))
   instance_type           = var.ec2_instance_type
   key_name                = var.key_name # for ssh key config
 
   network_interfaces {
     associate_public_ip_address = true
-    security_groups             = [aws_security_group.test1_sg.id]
+    security_groups             = [aws_security_group.test1_sg_lb.id, aws_security_group.test1_sg_ssh.id]
     # subnet_id                   = aws_subnet.private_subnets
   }
 

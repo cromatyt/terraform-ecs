@@ -2,67 +2,69 @@
 # Security group #
 ##################
 
-resource "aws_security_group" "test1_sg" {
-  name        = "allow_for_test1"
-  description = "Allow SSH/HTTP/HTTPS inbound traffic"
+resource "aws_security_group" "test1_sg_lb" {
+  name        = "allow_for_test1_lb_dynamic"
+  description = "Allow Dynamic port + HTTP/HTTPS inbound traffic"
   vpc_id      = aws_vpc.test1_vpc.id
 
   tags = {
-    Name = "allow_basic_test1"
+    Name = "allow_basic_test1_lb_dynamic"
   }
 }
 
-# resource "aws_security_group_rule" "test1_ingress_http" {
-#   type              = "ingress"
-#   description       = "HTTP from VPC"
-#   from_port         = 80
-#   to_port           = 80
-#   protocol          = "tcp"
-#   cidr_blocks       = var.allow_ip
-#   security_group_id = aws_security_group.test1_sg.id
-# }
+resource "aws_security_group" "test1_sg_ssh" {
+  name        = "allow_for_test1_ssh"
+  description = "Allow SSH inbound traffic"
+  vpc_id      = aws_vpc.test1_vpc.id
 
-# resource "aws_security_group_rule" "test1_ingress_https" {
-#   type              = "ingress"
-#   description       = "HTTPS from VPC"
-#   from_port         = 443
-#   to_port           = 443
-#   protocol          = "tcp"
-#   cidr_blocks       = var.allow_ip
-#   security_group_id = aws_security_group.test1_sg.id
-# }
+  tags = {
+    Name = "allow_basic_test1_ssh"
+  }
+}
 
-resource "aws_security_group_rule" "test1_ingress_lb" {
+# Rule to dynamic ports ecs
+resource "aws_security_group_rule" "test1_ingress_lb_dynamic_ecs_port" {
   type              = "ingress"
   description       = "Allow ingress traffic from LB dynamic port"
-  from_port         = 50
+  from_port         = 32768
   to_port           = 65535
   protocol          = "tcp"
   cidr_blocks       = ["0.0.0.0/0"]
-  security_group_id = aws_security_group.test1_sg.id
+  security_group_id = aws_security_group.test1_sg_lb.id
 }
 
-
-# resource "aws_security_group_rule" "test1_ingress_ssh" {
-  # type              = "ingress"
-  # description       = "SSH from VPC"
-  # from_port         = 22
-  # to_port           = 22
-  # protocol          = "tcp"
-  # cidr_blocks       = var.allow_ip
-  # security_group_id = aws_security_group.test1_sg.id
-# }
-
-resource "aws_security_group_rule" "test1_ingress_ssh_all" {
+resource "aws_security_group_rule" "test1_ingress_lb_http" {
   type              = "ingress"
-  description       = "SSH from VPC for all"
+  description       = "Allow HTTP from LB"
+  from_port         = 80
+  to_port           = 80
+  protocol          = "tcp"
+  cidr_blocks       = var.allow_ip
+  security_group_id = aws_security_group.test1_sg_lb.id
+}
+
+resource "aws_security_group_rule" "test1_ingress_lb_https" {
+  type              = "ingress"
+  description       = "Allow HTTPS from LB"
+  from_port         = 443
+  to_port           = 443
+  protocol          = "tcp"
+  cidr_blocks       = var.allow_ip
+  security_group_id = aws_security_group.test1_sg_lb.id
+}
+
+# Rule to allow SSH from internet
+resource "aws_security_group_rule" "test1_ingress_ssh_private_ip" {
+  type              = "ingress"
+  description       = "SSH from VPC for custom IP list"
   from_port         = 22
   to_port           = 22
   protocol          = "tcp"
   cidr_blocks       = var.allow_ip
-  security_group_id = aws_security_group.test1_sg.id
+  security_group_id = aws_security_group.test1_sg_ssh.id
 }
 
+# Rule to allow all egress traffic
 resource "aws_security_group_rule" "test1_egress_all" {
   type              = "egress"
   description       = "allow all output egress"
@@ -70,5 +72,5 @@ resource "aws_security_group_rule" "test1_egress_all" {
   to_port           = 0
   protocol          = "-1" # mean all
   cidr_blocks       = ["0.0.0.0/0"]
-  security_group_id = aws_security_group.test1_sg.id
+  security_group_id = [aws_security_group.test1_sg_lb.id, aws_security_group.test1_sg_ssh.id]
 }
