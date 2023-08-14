@@ -3,12 +3,9 @@
 #########
 
 data "aws_instances" "my_instances_test1" {
-  # filter {
-  #   name  = "tag:Name"
-  #   values = ["instance-${var.project_name}-${var.environment}"]
-  # }
-  instance_tags {
-    Name = "instance-${var.project_name}-${var.environment}"
+  filter {
+    name  = "tag:Name"
+    values = ["instance-${var.project_name}-${var.environment}"]
   }
 }
 
