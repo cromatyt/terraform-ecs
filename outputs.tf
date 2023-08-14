@@ -29,5 +29,5 @@ output "instance_name" {
 
 output "lb_dns" {
   description = "Load Balancer"
-  value       = "${element(aws_lb.lb_test1.dns_name)}"
+  value       = "${aws_lb.lb_test1.dns_name}"
 }
