@@ -33,12 +33,12 @@ This project will deploy an ECS environment on AWS with EC2 instances (no Fargat
 - [X] Subnet
 - [X] Internet Gateway (ig)
 - [X] Route Table
-- [ ] Security group (sg)
-- [ ] Autoscaling group (asg)
-- [ ] IAM
+- [X] Security group (sg)
+- [X] Autoscaling group (asg)
+- [X] IAM
 - [X] SSH
-- [ ] ECS
+- [X] ECS
 - [ ] ECR
-- [ ] Loadbalancer (lb) # need remove ecs portMappings
+- [X] Loadbalancer (lb) # need remove ecs portMappings
 - [ ] Cloudwatch
 - [ ] Output

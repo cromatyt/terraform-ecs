@@ -3,9 +3,12 @@
 #########
 
 data "aws_instances" "my_instances_test1" {
-  filter {
-    name  = "tag:Name"
-    values = ["instance-${var.project_name}-${var.environment}"]
+  # filter {
+  #   name  = "tag:Name"
+  #   values = ["instance-${var.project_name}-${var.environment}"]
+  # }
+  instance_tags {
+    Name = "instance-${var.project_name}-${var.environment}"
   }
 }
 
@@ -17,7 +20,6 @@ data "aws_instances" "my_instances_test1" {
 
 output "instance_public_ip" {
  description = "Public IP address of the EC2 instance"
-#  value       = aws_instance.test1[*].public_ip
  value       = "${data.aws_instances.my_instances_test1.public_ips}"
  sensitive   = false
 }
@@ -29,5 +31,5 @@ output "instance_name" {
 
 output "lb_dns" {
   description = "Load Balancer"
-  value       = "${aws_lb.lb_test1.dns_name}"
+  value       = aws_lb.lb_test1.dns_name
 }
