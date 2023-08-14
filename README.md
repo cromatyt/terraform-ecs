@@ -33,7 +33,7 @@ This project will deploy an ECS environment on AWS with EC2 instances (no Fargat
 - [X] Route Table
 - [x] Security group (sg)
 - [ ] Autoscaling group (asg)
-- [x] IAM
+- [ ] IAM
 - [X] SSH
 - [X] ECS
 - [ ] ECR
