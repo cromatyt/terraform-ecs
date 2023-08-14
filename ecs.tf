@@ -131,6 +131,6 @@ resource "aws_ecs_service" "ecs_service" {
   }
 
   # To prevent ECS service to get stuck in the DRAINING state (need aws_iam_role_policy)
-  depends_on = [ aws_iam_role.ecs_iam_role, aws_autoscaling_group.ecs_asg]
+  depends_on = [ aws_iam_role_policy.ecs_iam_role_policy, aws_autoscaling_group.ecs_asg]
 
 }
