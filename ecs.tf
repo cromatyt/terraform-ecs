@@ -58,13 +58,13 @@ resource "aws_ecs_task_definition" "task_definition_test1" {
           protocol      = "tcp"
         }
       ]
-      "healthcheck": {
-        "command": ["CMD", "curl 127.0.0.1/health"]
-        # "interval": ,
-        # "timeout": ,
-        # "retries": ,
-        # "startPeriod":
-      }
+      # "healthcheck": {
+      #   "command": ["CMD", "curl 127.0.0.1/health"]
+      #   # "interval": ,
+      #   # "timeout": ,
+      #   # "retries": ,
+      #   # "startPeriod":
+      # }
     }
   ])
 
