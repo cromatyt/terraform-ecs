@@ -12,25 +12,35 @@ resource "aws_security_group" "test1_sg" {
   }
 }
 
-resource "aws_security_group_rule" "test1_ingress_http" {
+# resource "aws_security_group_rule" "test1_ingress_http" {
+#   type              = "ingress"
+#   description       = "HTTP from VPC"
+#   from_port         = 80
+#   to_port           = 80
+#   protocol          = "tcp"
+#   cidr_blocks       = var.allow_ip
+#   security_group_id = aws_security_group.test1_sg.id
+# }
+
+# resource "aws_security_group_rule" "test1_ingress_https" {
+#   type              = "ingress"
+#   description       = "HTTPS from VPC"
+#   from_port         = 443
+#   to_port           = 443
+#   protocol          = "tcp"
+#   cidr_blocks       = var.allow_ip
+#   security_group_id = aws_security_group.test1_sg.id
+# }
+
+resource "aws_security_group_rule" "test1_ingress_lb" {
   type              = "ingress"
-  description       = "HTTP from VPC"
-  from_port         = 80
-  to_port           = 80
+  description       = "Allow ingress traffic from LB dynamic port"
+  from_port         = 1024
+  to_port           = 655535
   protocol          = "tcp"
-  cidr_blocks       = var.allow_ip
   security_group_id = aws_security_group.test1_sg.id
 }
 
-resource "aws_security_group_rule" "test1_ingress_https" {
-  type              = "ingress"
-  description       = "HTTPS from VPC"
-  from_port         = 443
-  to_port           = 443
-  protocol          = "tcp"
-  cidr_blocks       = var.allow_ip
-  security_group_id = aws_security_group.test1_sg.id
-}
 
 # resource "aws_security_group_rule" "test1_ingress_ssh" {
   # type              = "ingress"
