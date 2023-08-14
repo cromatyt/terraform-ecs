@@ -80,4 +80,6 @@ resource "aws_autoscaling_group" "ecs_asg" {
       min_healthy_percentage = 50
     }
   }
+
+  depends_on = [ aws_launch_template.ecs_launch_config ]
 }

@@ -114,4 +114,6 @@ resource "aws_ecs_service" "ecs_service" {
       aws_cloudwatch_metric_alarm.alarm_test1_MEM.alarm_name,
     ]
   }
+
+  depends_on = [ aws_autoscaling_group.lb_target_group_test1 ]
 }
