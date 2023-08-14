@@ -21,9 +21,9 @@ This project will deploy an ECS environment on AWS with EC2 instances (no Fargat
 |AWS_ACCESS_KEY_ID | Your AWS ACCESS KEY | string |
 |AWS_SECRET_ACCESS_KEY| Your AWS SECRET KEY | string |
 |AWS_DEFAULT_REGION | Your AWS region | string |
-| MY_IP | list of your allowed IP (add network mask for each) | list |
+| MY_IP | IP list that you want to allow (add network mask for each) | list |
 
-3. Set the IP list that you want to allow to access to your security group, Github action secrets name `MY_IP`.
+3. Configure/create an AWS S3 then edit version.tf => backend "s3" section
 
 ## List of verify sections
 
