@@ -60,7 +60,7 @@ resource "aws_lb_target_group" "lb_target_group_test1" {
     interval            = "60"
     matcher             = "200"
     path                = "/"
-    port                = "traffic-port"
+    # port                = "traffic-port"
     protocol            = "HTTP"
     timeout             = "30"
   }
