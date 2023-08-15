@@ -29,6 +29,26 @@ resource "aws_iam_instance_profile" "ec2_iam_agent" {
   role = aws_iam_role.ec2_iam_role.name
 }
 
+resource "aws_iam_role_policy" "ec2_service_role_policy" {
+  name   = "EC2_ServiceRolePolicy"
+  policy = data.aws_iam_policy_document.ec2_iam_for_stoptak_script.json
+  role   = aws_iam_role.ec2_iam_role.id
+}
+
+data "aws_iam_policy_document" "ec2_iam_for_stoptak_script" {
+  statement {
+    effect  = "Allow"
+    actions = [
+      "ecs:ListServices",
+      "ecs:UpdateService",
+      "ecs:ListTasks",
+      "ecs:DescribeServices",
+      "ecs:StopTask",
+			"ecs:DeleteService"
+    ]
+    resources = ["*"]
+  }
+}
 
 # Policy ECS
 data "aws_iam_policy_document" "ecs_assume_role" {
