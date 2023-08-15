@@ -43,6 +43,6 @@ This project will deploy an ECS environment on AWS with EC2 instances (no Fargat
 - [ ] Cloudwatch
 - [ ] Output
 
-## Troubleshoot
+## Troubleshoots
 
 In ecs.tf file, local-exec with destroy conditionnal do not accept variables so AWS_DEFAULT_REGION is set manually
