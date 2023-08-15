@@ -1,3 +1,7 @@
+sudo apt install awscli -y
+
+export AWS_DEFAULT_REGION=${REGION}
+
 SERVICES="$(aws ecs list-services --cluster "${CLUSTER}" | grep "${CLUSTER}" || true | sed -e 's/"//g' -e 's/,//')"
 
 for SERVICE in $SERVICES
@@ -14,5 +18,5 @@ do
 
   # Delete the service after it becomes inactive
   aws ecs wait services-inactive --cluster "${CLUSTER}" --service "${SERVICE}"
-  aws ecs delete-service --cluster "${CLUSTER}" --service "${SERVICE}"
+  #aws ecs delete-service --cluster "${CLUSTER}" --service "${SERVICE}"
 done
