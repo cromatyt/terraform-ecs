@@ -127,15 +127,13 @@ resource "aws_ecs_service" "ecs_service" {
 
 resource "null_resource" "prenvent_ecs_still_destroying" {
   triggers = {
-    region = var.aws_region
+    region  = var.aws_region
+    cluster = aws_ecs_cluster.ecs_cluster_test1.name
   }
 
   provisioner "local-exec" {
     when = destroy
-    command = "chmod +x ${path.module}/scripts/stop-tasks.sh;export AWS_DEFAULT_REGION=${self.triggers.region}; ${path.module}/scripts/stop-tasks.sh"
-    environment = {
-      CLUSTER = aws_ecs_cluster.ecs_cluster_test1.name
-    }
+    command = "chmod +x ${path.module}/scripts/stop-tasks.sh;export AWS_DEFAULT_REGION=${self.triggers.region};export CLUSTER=${self.triggers.cluster}; ${path.module}/scripts/stop-tasks.sh"
   }
 
   depends_on = [ aws_ecs_service.ecs_service ]
