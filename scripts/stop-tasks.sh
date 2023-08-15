@@ -1,7 +1,5 @@
 sudo apt install awscli -y
 
-export AWS_DEFAULT_REGION=${REGION}
-
 SERVICES="$(aws ecs list-services --cluster "${CLUSTER}" | grep "${CLUSTER}" || true | sed -e 's/"//g' -e 's/,//')"
 
 for SERVICE in $SERVICES
