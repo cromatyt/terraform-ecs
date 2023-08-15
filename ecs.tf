@@ -123,7 +123,7 @@ resource "aws_ecs_service" "ecs_service" {
 
   # Prevent against "aws_ecs_service.ecs_service: Still destroying..." TimeOut
   triggers = {
-    region = var.region
+    region = var.aws_region
   }
 
   provisioner "local-exec" {

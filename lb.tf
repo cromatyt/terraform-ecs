@@ -21,6 +21,8 @@ resource "aws_lb" "lb_test1" {
     name        = "LB-${var.lb_name}"
     Environment = var.environment
   }
+
+  depends_on = [ aws_internet_gateway.test1_ig ]
 }
 
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lb_listener
