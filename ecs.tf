@@ -121,20 +121,22 @@ resource "aws_ecs_service" "ecs_service" {
     ]
   }
 
-  # Prevent against "aws_ecs_service.ecs_service: Still destroying..." TimeOut
+  # To prevent ECS service to get stuck in the DRAINING state (need aws_iam_role_policy)
+  depends_on = [ aws_iam_role_policy_attachment.ecs_iam_policy_attach]
+}
+
+resource "null_resource" "prenvent_ecs_still_destroying" {
   triggers = {
-    aws_region = local.region
+    region = var.aws_region
   }
 
   provisioner "local-exec" {
     when = destroy
-    command = "chmod +x ${path.module}/scripts/stop-tasks.sh;export AWS_DEFAULT_REGION=${self.triggers.aws_region}; ${path.module}/scripts/stop-tasks.sh"
+    command = "chmod +x ${path.module}/scripts/stop-tasks.sh;export AWS_DEFAULT_REGION=${self.triggers.region}; ${path.module}/scripts/stop-tasks.sh"
     environment = {
       CLUSTER = self.name
     }
   }
 
-  # To prevent ECS service to get stuck in the DRAINING state (need aws_iam_role_policy)
-  depends_on = [ aws_iam_role_policy_attachment.ecs_iam_policy_attach]
-
+  depends_on = [ aws_ecs_service.ecs_service ]
 }
