@@ -123,12 +123,12 @@ resource "aws_ecs_service" "ecs_service" {
 
   # Prevent against "aws_ecs_service.ecs_service: Still destroying..." TimeOut
   triggers = {
-    region = var.aws_region
+    aws_region = local.region
   }
 
   provisioner "local-exec" {
     when = destroy
-    command = "chmod +x ${path.module}/scripts/stop-tasks.sh;export AWS_DEFAULT_REGION=${self.triggers.region}; ${path.module}/scripts/stop-tasks.sh"
+    command = "chmod +x ${path.module}/scripts/stop-tasks.sh;export AWS_DEFAULT_REGION=${self.triggers.aws_region}; ${path.module}/scripts/stop-tasks.sh"
     environment = {
       CLUSTER = self.name
     }
