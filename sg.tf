@@ -39,7 +39,7 @@ resource "aws_security_group_rule" "test1_ingress_lb_http" {
   from_port         = 80
   to_port           = 80
   protocol          = "tcp"
-  cidr_blocks       = var.allow_ip
+  cidr_blocks       = ["0.0.0.0/0"]
   security_group_id = aws_security_group.test1_sg_lb.id
 }
 
@@ -49,7 +49,7 @@ resource "aws_security_group_rule" "test1_ingress_lb_https" {
   from_port         = 443
   to_port           = 443
   protocol          = "tcp"
-  cidr_blocks       = var.allow_ip
+  cidr_blocks       = ["0.0.0.0/0"]
   security_group_id = aws_security_group.test1_sg_lb.id
 }
 
