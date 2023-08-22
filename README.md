@@ -1,4 +1,4 @@
-# Terraform aws
+# Terraform aws (no Fargate)
 
 :warning: In this example I use ubuntu 22:04 ami which is [not officially support by ec2](https://github.com/aws/amazon-ecs-agent/issues/3227) !
 
