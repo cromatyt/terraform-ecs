@@ -1,18 +1,18 @@
 # Terraform aws (no Fargate)
 
-:warning: In this example I use ubuntu 22:04 ami which is [not officially support by ec2](https://github.com/aws/amazon-ecs-agent/issues/3227) !
+:warning: In this example I use ubuntu 22:04 ami which is [not officially support by ecs](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-anywhere.html) !
 
-That why I add AppArmor section in ecs-agent.sh file :warning:
+That why I add AppArmor section in ecs-agent.sh file ([ref](https://github.com/aws/amazon-ecs-agent/issues/3227) :warning:
 
 ## Description
 
-This project will deploy an ECS environment on AWS with EC2 instances (no Fargate).
+This project will deploy an ECS environment on AWS with EC2 instances (ASG / no Fargate).
 
 ## Required
 
 1. Configure SSH
 
-    Generate ed25519 pem key local (here on linux device): `ssh-keygen -t ed25519 -m PEM -f FILE_NAME.pem -C 'SOME COMMENT'` and copy the publique key into the ssh folder project
+    Generate ed25519 pem key local (here on linux device): `ssh-keygen -t ed25519 -m PEM -f FILE_NAME.pem -C 'SOME COMMENT'` and copy the publique key into the ssh folder project 
 
 2. Set AWS access in Github action secrets:
 
