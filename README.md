@@ -2,7 +2,7 @@
 
 :warning: In this example I use ubuntu 22:04 ami which is [not officially support by ecs](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-anywhere.html) !
 
-That why I add AppArmor section in ecs-agent.sh file ([ref](https://github.com/aws/amazon-ecs-agent/issues/3227) :warning:
+That why I add AppArmor section in ecs-agent.sh file ([ref](https://github.com/aws/amazon-ecs-agent/issues/3227)) :warning:
 
 ## Description
 
@@ -12,9 +12,10 @@ This project will deploy an ECS environment on AWS with EC2 instances (ASG / no 
 
 1. Configure SSH
 
-    Generate ed25519 pem key local (here on linux device): `ssh-keygen -t ed25519 -m PEM -f FILE_NAME.pem -C 'SOME COMMENT'` and copy the publique key into the ssh folder project 
+    Generate ed25519 pem key local (here on linux device): `ssh-keygen -t ed25519 -m PEM -f FILE_NAME.pem -C 'SOME COMMENT'` and copy the publique key into the ssh folder project.
+   Delete existing public key in the SSH folder and if you set a specific file name, modify `ec2_ssh_key_path` terraform variable default value with it.
 
-2. Set AWS access in Github action secrets:
+3. Set AWS access in Github action secrets:
 
 | Name | Descrtption | Type |
 | --- | --- | --- |
@@ -24,8 +25,9 @@ This project will deploy an ECS environment on AWS with EC2 instances (ASG / no 
 | MY_IP | IP list that you want to allow (add network mask for each) | list |
 
 3. Configure/create an AWS S3 then edit version.tf => backend "s3" section
+   If you use this project for the first time, you will need to create the S3 manually
 
-4. You can custom ecs-agent.sh script if you want to add some packages/configurations
+5. You can custom ecs-agent.sh script if you want to add some linux packages/configurations
 
 ## Work in progress
 
@@ -45,4 +47,4 @@ This project will deploy an ECS environment on AWS with EC2 instances (ASG / no 
 
 ## Troubleshoots
 
-In ecs.tf file, local-exec with destroy conditionnal do not accept variables so AWS_DEFAULT_REGION is set manually
+By default ECS do not delete task definition, it only deactivate them. You will need to use aws-cli or console to clean them
